@@ -25,27 +25,160 @@ class: center, middle
 
 ---
 
-# Agenda
 
-1. Introduction
-2. Deep-dive
-3. ...
+# Education
+
+- Engineering Master's degree at *INSA Toulouse* (France). Major: Critical Embedded Systems
+- Research Master's degree in AI at *University of Toulouse*
+- Machine learning PhD at *University of Toulouse*
+
+???
+
+insa: where I get my love for programming
+wanted to do a phd because I was attracted to teaching
+so did research master's degree, this time in AI because I didn't know anything
+about it.
+Really liked it and decided to do a phD in ML
 
 ---
 
-# Introduction
+# PhD: Machine learning with analogical proportions
 
-- qeflnqef
-- qef oqjnef
-- qef oqjnef
-- qef oqjnef
-- qef oqjnef
+- **Man : Woman :: King : Queen**
 
-    </textarea>
-    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
-    </script>
-    <script>
-      var slideshow = remark.create();
+- Can be used for inference:
+    - France : Paris :: USA : ?
+
+    - 6 : 3 :: 4 : ?
+        - answer = 2  -- geometric proportion
+        - answer = 1 --  arithmetic proportion
+
+- For machine learning:
+    - $$a : b :: c : d \implies \text{label}(a) : \text{label}(b) ::
+\text{label}(c) : \text{label}(d)$$
+
+---
+
+# PhD: Goals and results
+
+1. Exhibit theoretical properties of analogical classifiers
+    - Found **functional** unifying definition of analogical classification
+    - Found criteria to safely apply the analogical inference principle
+
+2. Apply analogical inference principle recommender systems
+    - Some interesting results, but very slow $\mathcal{O}(n^3)$
+    - Developed Surprise:
+        - Open source Python library for recommender systems
+        - Very popular: 3K stars on Github
+
+---
+
+# Current position: software for friendly machine learning
+
+I mainly contribute to scikit-learn
+
+- focus on building tools for accessible ML (in line with Andy's work)
+- new features
+- bug fixes
+- answer users issues
+- code reviews (keeping the project healthy)
+- core-developer duties: design and maintenance of the project
+
+
+- strong emphasis on documentation, ease of use, maintainability
+
+
+???
+
+Used to be complete outsider to ML, and I still remember what was hard to
+understand.
+
+documentation: this is what made surprise popular
+
+---
+
+# Fast gradient boosting decision trees
+
+- GBDTs are a major component of ML pipelines
+- scikit-learn implementation was slow compared to dedicated libraries like
+XGBoost or LightGBM
+- Now: faster than XGBoost, on par with LightGBM
+
+- 8 months work, 5K lines of code
+
+- Why it is useful in scikit-learn:
+    - guaranteed long-term support and maintenance (hopefully :) )
+    - no need to install other packages: less dependencies
+    - better integration with scikit-learn ecosystem and tools (**reproducibility**!)
+    - written in Python (+ Cython): easier to maintain / contribute
+    - can handle both continuous **and** categorical variables features
+    - can natively handle missing data
+
+- Fast, efficient, have built-in support many typical use-cases: **easy to use**!
+
+---
+
+# Successive Halving: efficient parameter search
+
+- Purpose: find the best set of parameters for a given ML task
+
+- Like grid search or random search... but **much** faster:
+    - start with a small budget
+    - evaluate all candidates
+    - keep the best half, increase budget
+    - repeat
+- Existing implementations:
+    - not standard
+    - do not meet scikit-learn quality standards
+    - hard to use, not/poorly documented (**!!**)
+    - unable to reach a wider audience
+
+- Integrated in `dabl`, **with a scikit-learn API**. Zero cognitive overhead
+for users
+- Bridging the gap between SOTA research and usability
+
+---
+
+# Partial Dependence Plots
+
+.center[![:scale 70%](pdp.png)]
+
+- Very useful inspection tool
+- Was only implemented for the (old and slow) GBDTs
+- Now works with all estimators
+- Had been stalled for 3 years (still took 5 more months!)
+
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script>
+// Config Remark
+remark.macros['scale'] = function (percentage) {
+var url = this;
+return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+config_remark = {
+// highlightStyle: 'magula',
+// highlightSpans: true,
+// highlightLines: true,
+// ratio: "16:9"
+};
+var slideshow = remark.create(config_remark);
+    // Configure MathJax
+    MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] /* removed 'code' entry*/
+    }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
     </script>
   </body>
 </html>
