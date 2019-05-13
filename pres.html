@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title></title>
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -21,30 +21,49 @@
 
 class: center, middle
 
-# Title
+# Nicolas Hug
+
+
+Building software for accessible machine learning
+
+
+???
+
+My name's nicolas hug and I'm going to present the work that I'm currently
+doing at DSI as part of Andreas mueller's team.
+
+Goal in our team is to make machine learning usable not only by experienced
+practitioners but also to beginners and less experienced people
+
 
 ---
 
-
 # Education
 
-- Engineering Master's degree at *INSA Toulouse* (France). Major: Critical Embedded Systems
+- Engineering Master's degree at *INSA Toulouse* (France). Major: Critical
+  Embedded Systems
+
 - Research Master's degree in AI at *University of Toulouse*
+
 - Machine learning PhD at *University of Toulouse*
 
 ???
 
 insa: where I get my love for programming
+
 wanted to do a phd because I was attracted to teaching
 so did research master's degree, this time in AI because I didn't know anything
 about it.
+
 Really liked it and decided to do a phD in ML
 
 ---
 
-# PhD: Machine learning with analogical proportions
+# Machine learning with analogical proportions
 
-- **Man : Woman :: King : Queen**
+.center[**Man : Woman :: King : Queen**]
+
+--
 
 - Can be used for inference:
     - France : Paris :: USA : ?
@@ -53,7 +72,7 @@ Really liked it and decided to do a phD in ML
         - answer = 2  -- geometric proportion
         - answer = 1 --  arithmetic proportion
 
-- For machine learning:
+- Inference principle for ML:
     - $$a : b :: c : d \implies \text{label}(a) : \text{label}(b) ::
 \text{label}(c) : \text{label}(d)$$
 
@@ -71,6 +90,15 @@ Really liked it and decided to do a phD in ML
         - Open source Python library for recommender systems
         - Very popular: 3K stars on Github
 
+
+???
+
+RS part: most interestring results didn't come from actually applying analogy
+to RS, but came in the form of software.
+
+This interest in building accessible ML software is something that I've had for
+a while now.
+
 ---
 
 # Current position: software for friendly machine learning
@@ -80,13 +108,12 @@ I mainly contribute to scikit-learn
 - focus on building tools for accessible ML (in line with Andy's work)
 - new features
 - bug fixes
-- answer users issues
+- answer user issues
 - code reviews (keeping the project healthy)
 - core-developer duties: design and maintenance of the project
 
 
-- strong emphasis on documentation, ease of use, maintainability
-
+**Strong emphasis on documentation, ease of use, and maintainability**
 
 ???
 
@@ -95,26 +122,39 @@ understand.
 
 documentation: this is what made surprise popular
 
+--
+
+I contribute in three main areas:
+
+- efficient and versatile estimators
+- tools for auto-ml
+- tools for interpretability / explainability
+
+
+
 ---
 
 # Fast gradient boosting decision trees
 
-- GBDTs are a major component of ML pipelines
+- GBDTs are a major component of ML pipelines. Fast, efficient, built-in
+  support for most use-cases: **easy to use**!
+
 - scikit-learn implementation was slow compared to dedicated libraries like
 XGBoost or LightGBM
+
 - Now: faster than XGBoost, on par with LightGBM
 
-- 8 months work, 5K lines of code
+--
 
 - Why it is useful in scikit-learn:
     - guaranteed long-term support and maintenance (hopefully :) )
     - no need to install other packages: less dependencies
     - better integration with scikit-learn ecosystem and tools (**reproducibility**!)
     - written in Python (+ Cython): easier to maintain / contribute
-    - can handle both continuous **and** categorical variables features
+    - can handle both continuous **and** categorical features
     - can natively handle missing data
 
-- Fast, efficient, have built-in support many typical use-cases: **easy to use**!
+- 8 months work (3 months reviews), 5K lines of code
 
 ---
 
@@ -122,11 +162,10 @@ XGBoost or LightGBM
 
 - Purpose: find the best set of parameters for a given ML task
 
-- Like grid search or random search... but **much** faster:
-    - start with a small budget
-    - evaluate all candidates
-    - keep the best half, increase budget
-    - repeat
+- Drop-in replacement for grid search or random search... but **much** faster:
+    1. start with a small budget
+    2. evaluate all candidates
+    3. keep the best half, increase budget, go to 2 until last round
 - Existing implementations:
     - not standard
     - do not meet scikit-learn quality standards
@@ -137,17 +176,53 @@ XGBoost or LightGBM
 for users
 - Bridging the gap between SOTA research and usability
 
+
+???
+
+No yet implemented in scikit-learn, but on its way
+
 ---
 
 # Partial Dependence Plots
 
 .center[![:scale 70%](pdp.png)]
 
-- Very useful inspection tool
+- Very useful inspection tool for **explainability**
 - Was only implemented for the (old and slow) GBDTs
 - Now works with all estimators
 - Had been stalled for 3 years (still took 5 more months!)
 
+
+---
+
+# Future plans
+
+```python
+data = load_data(...)
+
+est = AnyClassifier().fit(data)
+
+est.explain()
+```
+
+- Add more features to GBDTs (missing data, categorical features)
+
+- Add more support for PDPs
+
+- Built-in support for `pandas`
+
+- Auto-ml in `dabl`:
+
+  - implement Hyperband (extension of SH) and other search strategies
+  - meta learning: exploit prior knowledge from similar tasks
+  - create portfolio of default parameter ranges (default search space)
+
+
+---
+
+class: center, middle
+
+# Thanks!
 
 </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
